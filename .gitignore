@@ -87,3 +87,16 @@ Migrations/
 
 # Node.js
 node_modules/
+/.vs/DesignPattern/DesignTimeBuild/.dtbcache.v2
+/Infrastructure/obj/Debug/net8.0/Infrastructure.AssemblyInfo.cs
+/Infrastructure/obj/Debug/net8.0/Infrastructure.AssemblyInfoInputs.cache
+/UI/obj/Debug/net8.0/UI.AssemblyInfo.cs
+/UI/obj/Debug/net8.0/UI.AssemblyInfoInputs.cache
+/UI/obj/project.assets.json
+/UI/obj/project.nuget.cache
+/UI/obj/UI.csproj.nuget.dgspec.json
+/Domain/obj/Debug/net8.0/Domain.AssemblyInfo.cs
+/Domain/obj/Debug/net8.0/Domain.AssemblyInfoInputs.cache
+/.vs/DesignPattern/v17/.suo
+/.vs/DesignPattern/v17/DocumentLayout.backup.json
+/.vs/DesignPattern/v17/DocumentLayout.json
