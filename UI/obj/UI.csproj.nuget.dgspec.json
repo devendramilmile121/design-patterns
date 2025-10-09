@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\dhmil\\source\\repos\\design-patterns\\UI\\UI.csproj": {}
+    "C:\\Users\\dhmil\\source\\repos\\devendramilmile121\\design-patterns\\UI\\UI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\dhmil\\source\\repos\\design-patterns\\UI\\UI.csproj": {
+    "C:\\Users\\dhmil\\source\\repos\\devendramilmile121\\design-patterns\\UI\\UI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\dhmil\\source\\repos\\design-patterns\\UI\\UI.csproj",
+        "projectUniqueName": "C:\\Users\\dhmil\\source\\repos\\devendramilmile121\\design-patterns\\UI\\UI.csproj",
         "projectName": "UI",
-        "projectPath": "C:\\Users\\dhmil\\source\\repos\\design-patterns\\UI\\UI.csproj",
+        "projectPath": "C:\\Users\\dhmil\\source\\repos\\devendramilmile121\\design-patterns\\UI\\UI.csproj",
         "packagesPath": "C:\\Users\\dhmil\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\dhmil\\source\\repos\\design-patterns\\UI\\obj\\",
+        "outputPath": "C:\\Users\\dhmil\\source\\repos\\devendramilmile121\\design-patterns\\UI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -1,0 +1,88 @@
+# .NET
+bin/
+obj/
+*.dll
+*.exe
+*.log
+*.vspscc
+*.vssscc
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.pdb
+*.cache
+*.mdb
+*.dbmdl
+*.bak
+*.backup
+*.swp
+*.tmp
+*.temp
+*.ide
+*.sdf
+*.opensdf
+*.v12.suo
+*.vsp
+*.psess
+*.vspx
+*.vsix
+*.nupkg
+*.snk
+*.psess
+*.pidb
+*.svclog
+*.scc
+*.vssscc
+*.vspscc
+*.publishsettings
+*.pubxml
+*.pubxml.user
+*.gpState
+*.vs/
+TestResults/
+packages/
+.nuget/
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Visual Studio Code
+.vscode/
+
+# Rider
+.idea/
+*.sln.iml
+
+# OS generated files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Others
+_ReSharper*/
+*.[Rr]e[Ss]harper*
+*.DotSettings.user
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# Entity Framework
+Migrations/
+
+# Local history
+.localhistory/
+
+# Windows image file caches
+*.jfif
+*.jpe
+*.jpeg
+*.jpg
+*.png
+*.gif
+*.tiff
+*.tif
+*.ico
+
+# Node.js
+node_modules/
