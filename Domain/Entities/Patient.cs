@@ -1,9 +1,8 @@
-﻿namespace Domain.Entities
+﻿namespace Domain.Entities;
+
+public class Patient
 {
-    public class Patient
-    {
-        public int Id { get; set; }
-        public string? Name { get; set; }
-        public string? InsuranceProvider { get; set; }
-    }
+    public int Id { get; set; }
+    public string? Name { get; set; }
+    public string? InsuranceProvider { get; set; }
 }

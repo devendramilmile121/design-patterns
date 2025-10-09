@@ -1,8 +1,7 @@
-﻿namespace Domain.Interfaces
+﻿namespace Domain.Interfaces;
+
+public interface IRepository<T>
 {
-    public interface IRepository<T>
-    {
-        void Add(T entity);
-        IEnumerable<T> GetAll();
-    }
+    void Add(T entity);
+    IEnumerable<T> GetAll();
 }
