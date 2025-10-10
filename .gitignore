@@ -89,3 +89,4 @@ Migrations/
 
 # Node.js
 node_modules/
+/.vs/
