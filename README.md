@@ -7,10 +7,16 @@ This repository demonstrates the implementation of common design patterns in C# 
 - **UI**: Console application entry point. Demonstrates usage of design patterns.
 - **Application**: Application layer for business logic and services.
 - **Domain**: Contains core domain entities and interfaces.
-- **Infrastructure**: Implementation details, such as singletons, data access, and configuration management.
+- **Infrastructure**: Implementation details, such as singletons, factories, data access, and configuration management.
 
-## Example Pattern: Singleton
-The solution includes a thread-safe Singleton implementation in `Infrastructure.Singleton.ConfigurationManager`.
+## Implemented Design Patterns
+
+### Singleton
+- Thread-safe Singleton implementation in `Infrastructure.Singleton.ConfigurationManager`.
+
+### Factory
+- Factory design pattern implemented in `Infrastructure.Factory`.
+- Provides a way to create notification objects (e.g., Email, SMS) without specifying the exact class.
 
 ## Prerequisites
 - [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
