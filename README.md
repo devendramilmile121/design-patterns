@@ -7,7 +7,7 @@ This repository demonstrates the implementation of common design patterns in C# 
 - **UI**: Console application entry point. Demonstrates usage of design patterns.
 - **Application**: Application layer for business logic and services.
 - **Domain**: Contains core domain entities and interfaces.
-- **Infrastructure**: Implementation details, such as singletons, factories, data access, and configuration management.
+- **Infrastructure**: Implementation details, such as singletons, factories, data access, configuration management, and dependency injection.
 
 ## Implemented Design Patterns
 
@@ -17,6 +17,11 @@ This repository demonstrates the implementation of common design patterns in C# 
 ### Factory
 - Factory design pattern implemented in `Infrastructure.Factory`.
 - Provides a way to create notification objects (e.g., Email, SMS) without specifying the exact class.
+
+### Dependency Injection
+- Dependency Injection pattern implemented in `Infrastructure.DI.SimpleContainer`.
+- Demonstrates constructor injection by automatically resolving and injecting dependencies (e.g., `IRepository<Patient>` into `IPatientService`).
+- Promotes loose coupling and testability.
 
 ## Prerequisites
 - [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)

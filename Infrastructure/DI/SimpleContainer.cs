@@ -1,4 +1,11 @@
 ﻿namespace Infrastructure.DI;
+/// <summary>
+/// Provides a simple dependency injection container for registering and resolving services and their implementations.
+/// </summary>
+/// <remarks>This container supports both instance-based and type-based service registrations.  Services can be
+/// registered as specific instances or as mappings between service types and their implementations. When resolving a
+/// service, the container will attempt to construct the implementation using its constructor,  recursively resolving
+/// any dependencies required by the constructor parameters.</remarks>
 public class SimpleContainer
 {
     private readonly Dictionary<Type, object> _instance = new();

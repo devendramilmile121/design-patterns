@@ -1,4 +1,5 @@
 ﻿using Application.Interfaces;
+using Application.Services;
 using Domain.Entities;
 using Domain.Interfaces;
 using Infrastructure.DI;
@@ -39,17 +40,6 @@ internal class Program
         var patientService = container.Resolve<IPatientService>();
         patientService.Register(new Patient { Id = 1, Name = "John Deo", InsuranceProvider = "IH" });
         Console.WriteLine("====== Dependency Injection Design Pattern End ======\n");
-    }
-
-    public class SimplePatientService : IPatientService
-    {
-        private readonly IRepository<Patient> _repo;
-        public SimplePatientService(IRepository<Patient> repo) => _repo = repo;
-        public void Register(Patient patient)
-        {
-            _repo.Add(patient);
-            Console.WriteLine($"[PatientService] Registered: {patient.Name}");
-        }
     }
 }
 
