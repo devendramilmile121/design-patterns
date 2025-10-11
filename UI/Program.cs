@@ -1,5 +1,11 @@
-﻿using Infrastructure.Factory;
+﻿using Application.Interfaces;
+using Domain.Entities;
+using Domain.Interfaces;
+using Infrastructure.DI;
+using Infrastructure.Factory;
+using Infrastructure.Repositories;
 using Infrastructure.Singleton;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace UI;
 
@@ -20,6 +26,30 @@ internal class Program
         var sms = smsFactory.CreateNotification();
         sms.Send($"Your appointment is Started at {DateTime.UtcNow.ToString()}");
         Console.WriteLine("====== Factory Design Pattern End ======\n");
+
+        Console.WriteLine("====== Dependency Injection Design Pattern Start ======");
+        Console.WriteLine("There is nothing to see any output");
+        Console.WriteLine("Add debugger while executing and go through code");
+        var container = new SimpleContainer();
+        var repo = new PatientRepository();
+        container.RegisterInstance<IRepository<Patient>>(repo);
+
+        // Register a simple implementation of IPatientService inline for demo
+        container.Register<IPatientService, SimplePatientService>();
+        var patientService = container.Resolve<IPatientService>();
+        patientService.Register(new Patient { Id = 1, Name = "John Deo", InsuranceProvider = "IH" });
+        Console.WriteLine("====== Dependency Injection Design Pattern End ======\n");
+    }
+
+    public class SimplePatientService : IPatientService
+    {
+        private readonly IRepository<Patient> _repo;
+        public SimplePatientService(IRepository<Patient> repo) => _repo = repo;
+        public void Register(Patient patient)
+        {
+            _repo.Add(patient);
+            Console.WriteLine($"[PatientService] Registered: {patient.Name}");
+        }
     }
 }
 
