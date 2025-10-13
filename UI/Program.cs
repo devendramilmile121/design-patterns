@@ -5,6 +5,7 @@ using Domain.Entities;
 using Domain.Interfaces;
 using Infrastructure.DI;
 using Infrastructure.Factory;
+using Infrastructure.Observer;
 using Infrastructure.Repositories;
 using Infrastructure.Singleton;
 using static System.Net.Mime.MediaTypeNames;
@@ -15,6 +16,11 @@ internal class Program
 {
     static void Main(string[] args)
     {
+        // Domain entities
+        var patient = new Patient { Id = 1, Name = "John Doe", InsuranceProvider = "HealthPlus" };
+        var doctor = new Doctor { Id = 1, Name = "Dr. Smith", Specialty = "Cardiology" };
+        var appointment = new Appointment { Id = 1, Patient = patient, Doctor = doctor, Date = DateTime.Now.AddDays(1) };
+
         Console.WriteLine("====== Singleton Design Pattern Start ======\n");
         var config = ConfigurationManager.Instance;
         Console.WriteLine($"[Singleton] Loaded config: {config.ConnectionString}\n");
@@ -39,7 +45,7 @@ internal class Program
         // Register a simple implementation of IPatientService inline for demo
         container.Register<IPatientService, SimplePatientService>();
         var patientService = container.Resolve<IPatientService>();
-        patientService.Register(new Patient { Id = 1, Name = "John Deo", InsuranceProvider = "IH" });
+        patientService.Register(patient);
         Console.WriteLine("====== Dependency Injection Design Pattern End ======\n");
 
         Console.WriteLine("====== Strategy Design Pattern Start ======");
@@ -48,6 +54,13 @@ internal class Program
         IBillingStrategy uninsured = new UninsuredBilling();
         Console.WriteLine($"[Strategy] Insured bill for $1000: {uninsured.CalculateBill(1000):C}");
         Console.WriteLine("====== Strategy Design Pattern End ======\n");
+
+        Console.WriteLine("====== Observer Design Pattern Start ======");
+        var notifier = new AppointmentNotifier();
+        notifier.AppointmentUpdated += msg => Console.WriteLine($"[Observer] Listener1: {msg}");
+        notifier.AppointmentUpdated += msg => Console.WriteLine($"[Observer] Listener2: {msg}");
+        notifier.Notify($"Appointment for {patient.Name} scheduled on {appointment.Date:d}.");
+        Console.WriteLine("====== Observer Design Pattern End ======\n");
     }
 }
 

@@ -96,6 +96,28 @@ Console.WriteLine($"[Strategy] Uninsured bill for $1000: {uninsured.CalculateBil
 - Easily add new billing strategies without changing existing code.
 - Promotes separation of concerns and testability.
 
+### Observer Design Pattern
+
+#### Overview
+The Observer pattern allows objects (observers) to subscribe to and receive notifications from another object (subject) when its state changes. This promotes loose coupling and event-driven programming.
+
+#### Implementation
+- `AppointmentNotifier` in `Infrastructure.Observer` exposes an `AppointmentUpdated` event.
+- Observers subscribe to this event and are notified via the `Notify` method.
+
+#### Example Usage
+```csharp
+var notifier = new AppointmentNotifier();
+notifier.AppointmentUpdated += msg => Console.WriteLine($"[Observer] Listener1: {msg}");
+notifier.AppointmentUpdated += msg => Console.WriteLine($"[Observer] Listener2: {msg}");
+notifier.Notify($"Appointment for {patient.Name} scheduled on {appointment.Date:d}.");
+```
+
+#### Benefits
+- Decouples the subject from its observers.
+- Supports multiple listeners for the same event.
+- Promotes event-driven architecture and scalability.
+
 ---
 
 For more details, see the source files in their respective folders and usage in `UI/Program.cs`.
