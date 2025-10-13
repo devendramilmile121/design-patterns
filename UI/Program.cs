@@ -1,5 +1,6 @@
 ﻿using Application.Interfaces;
 using Application.Services;
+using Application.Strategy;
 using Domain.Entities;
 using Domain.Interfaces;
 using Infrastructure.DI;
@@ -40,6 +41,13 @@ internal class Program
         var patientService = container.Resolve<IPatientService>();
         patientService.Register(new Patient { Id = 1, Name = "John Deo", InsuranceProvider = "IH" });
         Console.WriteLine("====== Dependency Injection Design Pattern End ======\n");
+
+        Console.WriteLine("====== Strategy Design Pattern Start ======");
+        IBillingStrategy insured = new InsuredBilling();
+        Console.WriteLine($"[Strategy] Insured bill for $1000: {insured.CalculateBill(1000):C}");
+        IBillingStrategy uninsured = new UninsuredBilling();
+        Console.WriteLine($"[Strategy] Insured bill for $1000: {uninsured.CalculateBill(1000):C}");
+        Console.WriteLine("====== Strategy Design Pattern End ======\n");
     }
 }
 

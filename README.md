@@ -1,4 +1,4 @@
-# Design Patterns (.NET 8 Solution)
+# Design Patterns (.NET 8 Solution) 
 
 This repository demonstrates the implementation of common design patterns in C# using .NET 8. The solution is organized into multiple projects to promote clean architecture and separation of concerns.
 
@@ -12,16 +12,93 @@ This repository demonstrates the implementation of common design patterns in C# 
 ## Implemented Design Patterns
 
 ### Singleton
-- Thread-safe Singleton implementation in `Infrastructure.Singleton.ConfigurationManager`.
+#### Overview
+The Singleton pattern ensures a class has only one instance and provides a global point of access to it. This is useful for shared resources like configuration settings.
+
+#### Implementation
+- `ConfigurationManager`: Thread-safe singleton implementation in `Infrastructure.Singleton.ConfigurationManager`.
+
+#### Example Usage
+```csharp
+var config = ConfigurationManager.Instance;
+Console.WriteLine($"[Singleton] Loaded config: {config.ConnectionString}");
+```
+
+#### Benefits
+- Ensures a single instance throughout the application.
+- Useful for shared resources.
+- Thread-safe implementation prevents race conditions.
 
 ### Factory
-- Factory design pattern implemented in `Infrastructure.Factory`.
-- Provides a way to create notification objects (e.g., Email, SMS) without specifying the exact class.
+#### Overview
+The Factory pattern provides a way to create objects without specifying the exact class of object that will be created. It promotes loose coupling and scalability.
+
+#### Implementation
+- Factories in `Infrastructure.Factory` create notification objects (e.g., Email, SMS) via `EmailFactory` and `SMSFactory`.
+- Notification types implement the `INotification` interface.
+
+#### Example Usage
+```csharp
+var emailFactory = new EmailFactory();
+var email = emailFactory.CreateNotification();
+email.Send("Your appointment is scheduled.");
+
+var smsFactory = new SMSFactory();
+smsFactory.CreateNotification().Send("Your appointment is started.");
+```
+#### Benefits
+- Decouples object creation from usage.
+- Easily extendable for new notification types.
+- Promotes the Open/Closed Principle.
 
 ### Dependency Injection
-- Dependency Injection pattern implemented in `Infrastructure.DI.SimpleContainer`.
-- Demonstrates constructor injection by automatically resolving and injecting dependencies (e.g., `IRepository<Patient>` into `IPatientService`).
+#### Overview
+Dependency Injection (DI) is a technique for achieving loose coupling between objects and their dependencies. It allows dependencies to be injected at runtime rather than hardcoded.
+
+#### Implementation
+- `SimpleContainer` in `Infrastructure.DI` provides basic DI functionality.
+- Demonstrates constructor injection by resolving and injecting dependencies (e.g., `IRepository<Patient>` into `IPatientService`).
+
+#### Example Usage
+```csharp
+var container = new SimpleContainer();
+var repo = new PatientRepository();
+container.RegisterInstance<IRepository<Patient>>(repo);
+container.Register<IPatientService, SimplePatientService>();
+var patientService = container.Resolve<IPatientService>();
+patientService.Register(new Patient { Id = 1, Name = "John Deo", InsuranceProvider = "IH" });
+```
+
+#### Benefits
 - Promotes loose coupling and testability.
+- Simplifies object creation and dependency management.
+- Makes it easier to swap implementations for testing or extension.
+
+### Strategy Design Pattern
+
+#### Overview
+The Strategy pattern enables selecting an algorithm's behavior at runtime. It defines a family of algorithms, encapsulates each one, and makes them interchangeable. This promotes the Open/Closed Principle and allows the behavior to be changed without modifying the client code.
+
+#### Implementation
+- `IBillingStrategy`: Interface for billing calculation.
+- `InsuredBilling`: Calculates bill for insured patients.
+- `UninsuredBilling`: Calculates bill for uninsured patients.
+
+#### Example Usage
+```csharp
+IBillingStrategy insured = new InsuredBilling();
+Console.WriteLine($"[Strategy] Insured bill for $1000: {insured.CalculateBill(1000):C}");
+IBillingStrategy uninsured = new UninsuredBilling();
+Console.WriteLine($"[Strategy] Uninsured bill for $1000: {uninsured.CalculateBill(1000):C}");
+```
+
+#### Benefits
+- Easily add new billing strategies without changing existing code.
+- Promotes separation of concerns and testability.
+
+---
+
+For more details, see the source files in their respective folders and usage in `UI/Program.cs`.
 
 ## Prerequisites
 - [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
