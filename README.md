@@ -118,6 +118,26 @@ notifier.Notify($"Appointment for {patient.Name} scheduled on {appointment.Date:
 - Supports multiple listeners for the same event.
 - Promotes event-driven architecture and scalability.
 
+### Command Design Pattern
+
+#### Overview
+The Command pattern encapsulates a request as an object, thereby allowing for parameterization of clients with queues, requests, and operations. It also provides support for undoable operations and logging.
+
+#### Implementation
+- `ICommand` interface in `Application.Commands` defines the contract for command execution.
+- `CreateAppointmentCommand` in `Infrastructure.Command` implements the `ICommand` interface and encapsulates the logic for creating an appointment.
+
+#### Example Usage
+```csharp
+ICommand createAppointment = new CreateAppointmentCommand(appointment);
+createAppointment.Execute();
+```
+
+#### Benefits
+- Decouples the object that invokes the operation from the one that knows how to perform it.
+- Supports undo/redo functionality and logging.
+- Makes it easy to add new commands without changing existing code.
+
 ---
 
 For more details, see the source files in their respective folders and usage in `UI/Program.cs`.
