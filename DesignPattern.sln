@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI", "UI\UI.csproj", "{4CD4F8D6-D950-4F1B-8CDD-3589E6F9E081}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{B15342D5-7894-4F1E-811F-10AF25A34144}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D3217CDE-7DF9-419A-83FB-7D19B16208E8} = {D3217CDE-7DF9-419A-83FB-7D19B16208E8}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{87556601-D8D3-4B6B-B29E-DA23ACCD91A8}"
 EndProject

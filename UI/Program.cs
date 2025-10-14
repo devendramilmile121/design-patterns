@@ -1,8 +1,10 @@
-﻿using Application.Interfaces;
+﻿using Application.Commands;
+using Application.Interfaces;
 using Application.Services;
 using Application.Strategy;
 using Domain.Entities;
 using Domain.Interfaces;
+using Infrastructure.Command;
 using Infrastructure.DI;
 using Infrastructure.Factory;
 using Infrastructure.Observer;
@@ -60,6 +62,11 @@ internal class Program
         notifier.AppointmentUpdated += msg => Console.WriteLine($"[Observer] Listener1: {msg}");
         notifier.AppointmentUpdated += msg => Console.WriteLine($"[Observer] Listener2: {msg}");
         notifier.Notify($"Appointment for {patient.Name} scheduled on {appointment.Date:d}.");
+        Console.WriteLine("====== Observer Design Pattern End ======\n");
+
+        Console.WriteLine("====== Observer Design Pattern Start ======");
+        ICommand createAppointment = new CreateAppointmentCommand(appointment);
+        createAppointment.Execute();
         Console.WriteLine("====== Observer Design Pattern End ======\n");
     }
 }
