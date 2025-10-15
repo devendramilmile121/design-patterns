@@ -138,6 +138,29 @@ createAppointment.Execute();
 - Supports undo/redo functionality and logging.
 - Makes it easy to add new commands without changing existing code.
 
+### Decorator Design Pattern
+
+#### Overview
+The Decorator pattern allows behavior to be dynamically added to individual objects without affecting the behavior of other objects from the same class. It promotes flexibility by enabling runtime composition of features.
+In the billing context, the decorator pattern allows adding additional functionality (like discounts) to billing objects without modifying their existing structure.
+
+#### Implementation
+- `IBilling`: Defines the contract for billing operations.
+- `BasicBilling`: Provides the base billing implementation.
+- `DiscountBillingDecorator`: Adds discount behavior by wrapping an existing IBilling instance.
+
+#### Example Usage
+```csharp
+IBilling basic = new BasicBilling(500);
+IBilling discounted = new DiscountBillingDecorator(basic);
+Console.WriteLine($"[Decorator] Basic: {basic.GetAmount():C}, Discounted: {discounted.GetAmount():C}");
+```
+
+#### Benefits
+- Extends object behavior without modifying existing code.
+- Supports composition over inheritance.
+- Promotes flexibility and adherence to the Open/Closed Principle.
+
 ---
 
 For more details, see the source files in their respective folders and usage in `UI/Program.cs`.

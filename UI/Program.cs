@@ -5,6 +5,7 @@ using Application.Strategy;
 using Domain.Entities;
 using Domain.Interfaces;
 using Infrastructure.Command;
+using Infrastructure.Decorator;
 using Infrastructure.DI;
 using Infrastructure.Factory;
 using Infrastructure.Observer;
@@ -67,6 +68,12 @@ internal class Program
         Console.WriteLine("====== Observer Design Pattern Start ======");
         ICommand createAppointment = new CreateAppointmentCommand(appointment);
         createAppointment.Execute();
+        Console.WriteLine("====== Observer Design Pattern End ======\n");
+
+        Console.WriteLine("====== Observer Design Pattern Start ======");
+        IBilling basic = new BasicBilling(500);
+        IBilling discounted = new DiscountBillingDecorator(basic);
+        Console.WriteLine($"[Decorator] Basic: {basic.GetAmount():C}, Discounted: {discounted.GetAmount():C}");
         Console.WriteLine("====== Observer Design Pattern End ======\n");
     }
 }
