@@ -161,6 +161,33 @@ Console.WriteLine($"[Decorator] Basic: {basic.GetAmount():C}, Discounted: {disco
 - Supports composition over inheritance.
 - Promotes flexibility and adherence to the Open/Closed Principle.
 
+### Chain of Responsibility Design Pattern
+
+#### Overview
+The Chain of Responsibility pattern passes a request along a chain of handlers where each handler decides either to process the request or to pass it to the next handler in the chain. This removes tight coupling between the sender and specific receivers and makes the request processing pipeline easy to extend or reorder.
+
+#### Implementation
+- `ApprovalHandler`: Abstract base defining `SetNext(ApprovalHandler)` and `Handle(Patient)` to build the chain and process the request.
+- `InsuranceCheckHandler`: Verifies whether a `Patient` has an `InsuranceProvider`. If the check passes, forwards to the next handler.
+- `DoctorApprovalHandler`: Simulates a doctor approval step and forwards to the next handler, if any.
+
+#### Example Usage
+```csharp
+// Build the chain
+var insuranceCheckHandler = new InsuranceCheckHandler();
+var doctorApprovalHandler = new DoctorApprovalHandler();
+insuranceCheckHandler.SetNext(doctorApprovalHandler);
+
+// Execute the chain
+insuranceCheckHandler.Handle(patient);
+```
+
+#### Benefits
+- Decouples request sender from concrete handlers.
+- Flexible runtime composition and reordering of steps.
+- Easy to add new approval steps without modifying existing handlers (Open/Closed Principle).
+- Reduces complex conditional logic by splitting responsibilities across handlers.
+
 ---
 
 For more details, see the source files in their respective folders and usage in `UI/Program.cs`.

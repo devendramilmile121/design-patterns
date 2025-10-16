@@ -5,6 +5,7 @@ using Application.Strategy;
 using Domain.Entities;
 using Domain.Interfaces;
 using Infrastructure.Command;
+using Infrastructure.Chain;
 using Infrastructure.Decorator;
 using Infrastructure.DI;
 using Infrastructure.Factory;
@@ -75,6 +76,13 @@ internal class Program
         IBilling discounted = new DiscountBillingDecorator(basic);
         Console.WriteLine($"[Decorator] Basic: {basic.GetAmount():C}, Discounted: {discounted.GetAmount():C}");
         Console.WriteLine("====== Observer Design Pattern End ======\n");
+
+        Console.WriteLine("====== Chain of Responsibility Design Pattern Start ======");
+        var insuranceCheckHandler = new InsuranceCheckHandler();
+        var doctorApprovalHandler = new DoctorApprovalHandler();
+        insuranceCheckHandler.SetNext(doctorApprovalHandler);
+        insuranceCheckHandler.Handle(patient);
+        Console.WriteLine("====== Chain of Responsibility Design Pattern End ======\n");
     }
 }
 
