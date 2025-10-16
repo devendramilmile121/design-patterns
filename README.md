@@ -11,6 +11,54 @@ This repository demonstrates the implementation of common design patterns in C# 
 
 ## Implemented Design Patterns
 
+## Design Patterns by Category
+
+### Creational
+- ✅ [Singleton](#singleton)
+- ✅ [Factory](#factory)
+
+### Structural
+- ✅ [Decorator](#decorator-design-pattern)
+
+### Behavioral
+- ✅ [Strategy](#strategy-design-pattern)
+- ✅ [Observer](#observer-design-pattern)
+- ✅ [Command](#command-design-pattern)
+- ✅ [Chain of Responsibility](#chain-of-responsibility-design-pattern)
+- ✅ [Mediator](#mediator-design-pattern)
+
+### Architectural/IoC
+- ✅ [Dependency Injection](#dependency-injection)
+
+## Upcoming Design Patterns
+
+### Creational
+- Builder
+- Abstract Factory
+
+### Structural
+- Adapter
+- Facade
+- Proxy
+
+### Behavioral
+- Template Method
+- State
+
+### Persistence
+- Unit of Work
+- Specification
+
+### Architectural/CQRS & Mediation
+- MediatR Integration
+- CQRS
+
+### Resilience/Integration
+- Polly Policies
+- Outbox Pattern
+- Idempotency
+- Event Sourcing
+
 ### Singleton
 #### Overview
 The Singleton pattern ensures a class has only one instance and provides a global point of access to it. This is useful for shared resources like configuration settings.
@@ -187,6 +235,29 @@ insuranceCheckHandler.Handle(patient);
 - Flexible runtime composition and reordering of steps.
 - Easy to add new approval steps without modifying existing handlers (Open/Closed Principle).
 - Reduces complex conditional logic by splitting responsibilities across handlers.
+
+### Mediator Design Pattern
+
+#### Overview
+The Mediator pattern defines an object that encapsulates how a set of objects interact, promoting loose coupling by preventing objects from referring to each other explicitly. Instead, they communicate through the mediator.
+
+In this solution, the mediator coordinates actions when certain domain events occur (e.g., an appointment is created), making it easy to centralize cross-cutting reactions like billing or scheduling without tightly coupling services to each other.
+
+#### Implementation
+- `IMediator` (`Application.Mediator`): Defines the contract with a `Notify(object? sender, string eventName)` method.
+- `AppointmentMediator` (`Infrastructure.Mediator`): Implements `IMediator`. On `AppointmentCreated`, it prints a message simulating notifications to billing and scheduling subsystems.
+
+#### Example Usage
+```csharp
+var mediator = new AppointmentMediator(patientService);
+mediator.Notify(null, "AppointmentCreated");
+```
+
+#### Benefits
+- Reduces direct dependencies between collaborating objects.
+- Centralizes complex communication logic in one place.
+- Improves maintainability and testability by isolating interaction rules.
+- Supports adding new interactions/events with minimal changes to existing components.
 
 ---
 

@@ -9,6 +9,7 @@ using Infrastructure.Chain;
 using Infrastructure.Decorator;
 using Infrastructure.DI;
 using Infrastructure.Factory;
+using Infrastructure.Mediator;
 using Infrastructure.Observer;
 using Infrastructure.Repositories;
 using Infrastructure.Singleton;
@@ -83,6 +84,11 @@ internal class Program
         insuranceCheckHandler.SetNext(doctorApprovalHandler);
         insuranceCheckHandler.Handle(patient);
         Console.WriteLine("====== Chain of Responsibility Design Pattern End ======\n");
+
+        Console.WriteLine("====== Mediator Design Pattern Start ======");
+        var mediator = new AppointmentMediator(patientService);
+        mediator.Notify(null, "AppointmentCreated");
+        Console.WriteLine("====== Mediator Design Pattern End ======\n");
     }
 }
 
